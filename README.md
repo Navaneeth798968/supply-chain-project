@@ -93,6 +93,21 @@ The final dashboard balances high-level metrics with granular root-cause analysi
 * **Financial Pipeline Analysis:** Swapped a redundant order volume donut chart for an industry-standard **Stacked Bar Financial Chart**. It charts `order_status` on the axis against the `SUM(price)`. This allows stakeholders to instantly view exactly how much capital volume is frozen in transit bottlenecks.
 * **Time-Series Tracking:** A highly optimized line chart pulling dates strictly as continuous variables from the `gold_daily_logistics_summary` table tracks macro delivery performance variations without generating table-scanning lags.
 
+
+## 🚀 Project Expansion: Phase 1 (Seller & Product Domain)
+
+### Overview
+Expanded the core data platform beyond operational logistics to ingest, clean, and model vendor performance and product category metrics. This enabling stakeholders to identify high-yield revenue clusters and cross-reference financial performance against product quality.
+
+### Architecture Data Flow
+1. **Silver Transformation:** Ingested raw seller and product matrices via Unity Catalog; enforced strict schemas, trimmed whitespaces, and handled missing categorical data (`UNKNOWN`).
+2. **Gold Performance Marts:** - `main.gold.gold_seller_performance`: Aggregates total revenue, distinct orders, and average review scores per vendor. Optimized using Liquid Clustering (`CLUSTER BY seller_id`).
+   - `main.gold.gold_product_category_ranking`: Leverages Spark SQL window functions (`DENSE_RANK()`) to dynamically rank categories by financial contribution.
+
+### Power BI Analytics Layer
+To protect the system's sub-500ms visual latency, these tables were integrated using **Import Mode** (as both dimensions sit well under the 100k row threshold). 
+* **Strategic Scatter Plot:** Maps Category Revenue vs. Average Rating to instantly isolate "The Risk Zone" (High Revenue / Low Customer Satisfaction).
+* **Vendor Quality Leaderboard:** Tracks top 10 sellers by revenue, dynamically color-coded by their live review score to prevent operational blindspots.
 ---
 
 ## 🚀 How to Run this Project
