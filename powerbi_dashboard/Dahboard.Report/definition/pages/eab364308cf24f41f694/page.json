@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "eab364308cf24f41f694",
+  "displayName": "Phase 3: geographic Customer Revenue",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "91aa4d923dbbefae8f99",
+      "target": "740b82e4f75cdfbdacbe",
+      "type": "DataFilter"
+    }
+  ]
+}

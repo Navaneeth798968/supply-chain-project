@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 18,
+        "x": 0,
         "y": 0
       },
       "nodes": [
@@ -55,8 +55,8 @@
           "nodeIndex": "gold_product_category_ranking",
           "nodeLineageTag": "0f9b63cb-4866-4e65-8b5f-0d6ad0b8a5e8",
           "size": {
-            "height": 224,
-            "width": 234
+            "height": 247,
+            "width": 236
           },
           "zIndex": 0
         },
@@ -75,13 +75,26 @@
         },
         {
           "location": {
-            "x": 1420,
-            "y": 50
+            "x": 794,
+            "y": 407
           },
           "nodeIndex": "gold_customer_installment_correlation",
           "nodeLineageTag": "864433b6-1917-4333-9938-1728ded30966",
           "size": {
             "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 411,
+            "y": 384
+          },
+          "nodeIndex": "gold_geographic_revenue_density",
+          "nodeLineageTag": "6c771cc8-c07b-4eb9-89ce-549c89b8f150",
+          "size": {
+            "height": 248,
             "width": 234
           },
           "zIndex": 0

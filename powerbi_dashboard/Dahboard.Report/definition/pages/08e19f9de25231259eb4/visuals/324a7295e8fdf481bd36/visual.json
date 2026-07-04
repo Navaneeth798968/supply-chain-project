@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "324a7295e8fdf481bd36",
   "position": {
-    "x": 67.331670822942641,
-    "y": 110.42394014962593,
+    "x": 91.571072319201988,
+    "y": 104.13965087281795,
     "z": 0,
-    "height": 450.67331670822944,
-    "width": 563.790523690773,
+    "height": 420.14962593516208,
+    "width": 548.52867830423941,
     "tabOrder": 0
   },
   "visual": {
@@ -163,5 +163,42 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f3da36dccdf0b914fe7b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "gold_customer_installment_correlation"
+              }
+            },
+            "Property": "price_threshold_tier"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9c74ada7a7913eeab12d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "gold_customer_installment_correlation"
+                  }
+                },
+                "Property": "avg_installments"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
