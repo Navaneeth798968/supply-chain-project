@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "324a7295e8fdf481bd36",
+  "position": {
+    "x": 67.331670822942641,
+    "y": 110.42394014962593,
+    "z": 0,
+    "height": 450.67331670822944,
+    "width": 563.790523690773,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold_customer_installment_correlation"
+                    }
+                  },
+                  "Property": "price_threshold_tier"
+                }
+              },
+              "queryRef": "gold_customer_installment_correlation.price_threshold_tier",
+              "nativeQueryRef": "price_threshold_tier",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold_customer_installment_correlation"
+                    }
+                  },
+                  "Property": "price_threshold_tier"
+                }
+              },
+              "queryRef": "gold_customer_installment_correlation.price_threshold_tier",
+              "nativeQueryRef": "price_threshold_tier"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "gold_customer_installment_correlation"
+                        }
+                      },
+                      "Property": "avg_installments"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(gold_customer_installment_correlation.avg_installments)",
+              "nativeQueryRef": "Average of avg_installments"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "gold_customer_installment_correlation"
+                  }
+                },
+                "Property": "price_threshold_tier"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Price Threshold'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average Installments'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Price Threshold'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average Installments per Category'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

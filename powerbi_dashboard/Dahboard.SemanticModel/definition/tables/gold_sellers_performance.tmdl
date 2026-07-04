@@ -1,0 +1,67 @@
+table gold_sellers_performance
+	lineageTag: fc517c68-81a5-4cff-9c96-e8c3dfd9048a
+
+	column seller_id
+		dataType: string
+		lineageTag: fc36ff96-866e-4404-9093-58dcef556f7d
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_city
+		dataType: string
+		lineageTag: d349454b-465f-4b91-8dc6-ce3a0e2e9b09
+		summarizeBy: none
+		sourceColumn: seller_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_state
+		dataType: string
+		lineageTag: 1f371ba9-a356-439b-a599-23bd125cfce9
+		summarizeBy: none
+		sourceColumn: seller_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_orders
+		dataType: int64
+		formatString: 0
+		lineageTag: cd7cfdf6-3e32-4d3d-9b36-91a2c0781292
+		summarizeBy: sum
+		sourceColumn: total_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_revenue
+		dataType: double
+		lineageTag: 2546b71d-24af-4360-93a4-24c34f70da4c
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_seller_review_score
+		dataType: double
+		lineageTag: 37bbc4a4-086d-4640-b015-ce0fc4f8985e
+		summarizeBy: sum
+		sourceColumn: avg_seller_review_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition gold_sellers_performance = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405609590065761.1.azuredatabricks.net", "/sql/1.0/warehouses/d88b28148595f531", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    db_retail_analytics_Database = Source{[Name="db_retail_analytics",Kind="Database"]}[Data],
+				    supply_chain_project_Schema = db_retail_analytics_Database{[Name="supply_chain_project",Kind="Schema"]}[Data],
+				    gold_sellers_performance_Table = supply_chain_project_Schema{[Name="gold_sellers_performance",Kind="Table"]}[Data]
+				in
+				    gold_sellers_performance_Table
+

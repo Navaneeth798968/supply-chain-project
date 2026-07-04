@@ -1,0 +1,4 @@
+relationship f548538d-d026-7939-f7d4-e938d6f30d8c
+	fromColumn: fact_sales_fulfillment.customer_zip_code_prefix
+	toColumn: silver_geolocaiton.geolocation_zip_code_prefix
+

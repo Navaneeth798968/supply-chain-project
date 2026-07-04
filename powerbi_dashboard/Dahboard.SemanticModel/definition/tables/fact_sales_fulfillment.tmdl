@@ -1,0 +1,130 @@
+table fact_sales_fulfillment
+	lineageTag: 90c0b433-2c3e-4cd0-bfec-3c96fac26037
+
+	measure percentage_orders = SUM(fact_sales_fulfillment[is_delivery_on_time])/COUNT(fact_sales_fulfillment[is_delivery_on_time])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9aa5bf0b-4594-4c9b-ae2e-92116c1f3420
+
+	column order_id
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: a05f9a05-0971-4081-aba4-2dc0f2d366d2
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: d1ac5b2e-f6b8-402c-bbe0-a83dce071c76
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: b28c2aab-afde-48a1-b85f-ce71faeb0b72
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_id
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: e0aa855f-50b4-4132-926d-c345a6a73fbf
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_status
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: f7e874ae-3a21-433e-9af1-a462972f9316
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 9dc9ce0b-250d-42ad-8776-4d9d92503178
+		summarizeBy: none
+		sourceColumn: order_purchase_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		sourceProviderType: double
+		lineageTag: 01c180a7-5844-45e9-9cd7-d9149c937bf9
+		summarizeBy: sum
+		sourceColumn: price
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column freight_value
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 6e26ca74-f06d-4e79-ac1f-e8e10aa96448
+		summarizeBy: sum
+		sourceColumn: freight_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fulfillment_latency_days
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9999870c-604e-4708-b0e1-4868ccd0ca04
+		summarizeBy: sum
+		sourceColumn: fulfillment_latency_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_delivery_on_time
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6beaa088-5c81-4a1b-9321-5c288a131583
+		summarizeBy: sum
+		sourceColumn: is_delivery_on_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_zip_code_prefix
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 45a85586-4341-476e-b379-0204748a0574
+		summarizeBy: none
+		sourceColumn: customer_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_sales_fulfillment = m
+		mode: directQuery
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405609590065761.1.azuredatabricks.net", "/sql/1.0/warehouses/d88b28148595f531", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    db_retail_analytics_Database = Source{[Name="db_retail_analytics",Kind="Database"]}[Data],
+				    supply_chain_project_Schema = db_retail_analytics_Database{[Name="supply_chain_project",Kind="Schema"]}[Data],
+				    fact_sales_fulfillment_Table = supply_chain_project_Schema{[Name="fact_sales_fulfillment",Kind="Table"]}[Data]
+				in
+				    fact_sales_fulfillment_Table
+
+	annotation PBI_ResultType = Table
+

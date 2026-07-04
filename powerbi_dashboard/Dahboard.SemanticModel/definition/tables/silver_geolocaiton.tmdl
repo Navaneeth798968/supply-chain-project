@@ -1,0 +1,59 @@
+table silver_geolocaiton
+	lineageTag: 0316455c-b58c-406c-8191-9fa35b9ef21b
+
+	column geolocation_zip_code_prefix
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d35fa02-00b1-40dd-903f-e7ff23d339f9
+		summarizeBy: none
+		sourceColumn: geolocation_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: 502530ec-5a89-46d2-8894-ffba27c35438
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 81ab8a50-2b65-4d7f-bc48-47d54b3b975f
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column city
+		dataType: string
+		lineageTag: a9367dbd-e161-41d8-a280-54a7628f5078
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 2a4019d7-c110-457b-a9d9-4841cb5d5362
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition silver_geolocaiton = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405609590065761.1.azuredatabricks.net", "/sql/1.0/warehouses/d88b28148595f531", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    db_retail_analytics_Database = Source{[Name="db_retail_analytics",Kind="Database"]}[Data],
+				    supply_chain_project_Schema = db_retail_analytics_Database{[Name="supply_chain_project",Kind="Schema"]}[Data],
+				    silver_geolocaiton_Table = supply_chain_project_Schema{[Name="silver_geolocaiton",Kind="Table"]}[Data]
+				in
+				    silver_geolocaiton_Table
+

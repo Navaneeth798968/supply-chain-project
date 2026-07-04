@@ -1,0 +1,69 @@
+table gold_product_category_ranking
+	lineageTag: 0f9b63cb-4866-4e65-8b5f-0d6ad0b8a5e8
+
+	column category_revenue_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: c903ad94-bd14-4ded-a617-cf3a6b468610
+		summarizeBy: sum
+		sourceColumn: category_revenue_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category_name
+		dataType: string
+		lineageTag: 2951211c-6d41-48b8-bb78-dba0b7c9bd8e
+		summarizeBy: none
+		sourceColumn: product_category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: d1638d6d-5cae-499b-b351-2728110bbf2e
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_product_revenue
+		dataType: double
+		lineageTag: 9a325744-873c-4b45-8fee-63ee5e26221e
+		summarizeBy: sum
+		sourceColumn: total_product_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_product_rating
+		dataType: double
+		lineageTag: c3a0dceb-7f02-42d6-8224-be15ea41393a
+		summarizeBy: sum
+		sourceColumn: avg_product_rating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_category_revenue
+		dataType: double
+		lineageTag: 53e2c8eb-2fa7-45b3-a21c-e91b0c20ffa9
+		summarizeBy: sum
+		sourceColumn: total_category_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition gold_product_category_ranking = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405609590065761.1.azuredatabricks.net", "/sql/1.0/warehouses/d88b28148595f531", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    db_retail_analytics_Database = Source{[Name="db_retail_analytics",Kind="Database"]}[Data],
+				    supply_chain_project_Schema = db_retail_analytics_Database{[Name="supply_chain_project",Kind="Schema"]}[Data],
+				    gold_product_category_ranking_Table = supply_chain_project_Schema{[Name="gold_product_category_ranking",Kind="Table"]}[Data]
+				in
+				    gold_product_category_ranking_Table
+
