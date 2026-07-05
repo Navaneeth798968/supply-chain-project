@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["fact_sales_fulfillment","silver_geolocaiton","gold_daily_logistics_summary","gold_product_category_ranking","gold_sellers_performance","gold_customer_installment_correlation","gold_geographic_revenue_density"]
+annotation PBI_QueryOrder = ["fact_sales_fulfillment","silver_geolocaiton","gold_daily_logistics_summary","gold_product_category_ranking","gold_sellers_performance","gold_customer_installment_correlation","gold_geographic_revenue_density","gold_sentiment_root_cause"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -19,6 +19,7 @@ ref table gold_product_category_ranking
 ref table gold_sellers_performance
 ref table gold_customer_installment_correlation
 ref table gold_geographic_revenue_density
+ref table gold_sentiment_root_cause
 
 ref cultureInfo en-US
 

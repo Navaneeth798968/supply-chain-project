@@ -1,0 +1,58 @@
+table gold_sentiment_root_cause
+	lineageTag: 7a07d767-c86f-4bbc-aaa3-322d8f322398
+
+	column review_id
+		dataType: string
+		lineageTag: 9379a206-215b-4f84-afc9-b6215174be12
+		summarizeBy: none
+		sourceColumn: review_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_score
+		dataType: double
+		lineageTag: d3521812-f07a-4196-9512-50a9381ddf21
+		summarizeBy: sum
+		sourceColumn: review_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column review_comment_message
+		dataType: string
+		lineageTag: 55213281-0e32-4d6b-875f-6be0daddef0c
+		summarizeBy: none
+		sourceColumn: review_comment_message
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_long_latency
+		dataType: int64
+		formatString: 0
+		lineageTag: 459f63fb-792f-4168-9f8c-874818473d19
+		summarizeBy: sum
+		sourceColumn: is_long_latency
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_delivery_on_time
+		dataType: int64
+		formatString: 0
+		lineageTag: 36b9f4e7-940e-4a21-8296-376bba82b937
+		summarizeBy: sum
+		sourceColumn: is_delivery_on_time
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_sentiment_root_cause = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405609590065761.1.azuredatabricks.net", "/sql/1.0/warehouses/d88b28148595f531", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    db_retail_analytics_Database = Source{[Name="db_retail_analytics",Kind="Database"]}[Data],
+				    supply_chain_project_Schema = db_retail_analytics_Database{[Name="supply_chain_project",Kind="Schema"]}[Data],
+				    gold_sentiment_root_cause_Table = supply_chain_project_Schema{[Name="gold_sentiment_root_cause",Kind="Table"]}[Data]
+				in
+				    gold_sentiment_root_cause_Table
+
